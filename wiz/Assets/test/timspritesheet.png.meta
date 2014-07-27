@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: f1564e8408872417bbfe3ea58fc4a3a1
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: timspritesheet
+    21300002: timspritesheet_0
+    21300004: timspritesheet_1
+    21300006: timspritesheet_2
+    21300008: timspritesheet_3
+    21300010: timspritesheet_4
+    21300012: timspritesheet_5
+    21300014: timspritesheet_6
+    21300016: timspritesheet_7
+    21300018: timspritesheet_8
+    21300020: timspritesheet_9
+    21300022: timspritesheet_10
+    21300024: timspritesheet_11
+    21300026: timspritesheet_12
+    21300028: timspritesheet_13
+    21300030: timspritesheet_14
+    21300032: timspritesheet_15
+    21300034: timspritesheet_16
+    21300036: timspritesheet_17
+    21300038: timspritesheet_18
+    21300040: timspritesheet_19
+    21300042: timspritesheet_20
+    21300044: timspritesheet_21
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: timspritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 144
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 144
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 143
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 143
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 143
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 143
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 143
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 142
+        width: 81
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 142
+        width: 81
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 139
+        width: 81
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 139
+        width: 80
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 81
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 2
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 2
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 2
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 2
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 2
+        width: 81
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 3
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 3
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 3
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timspritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 3
+        width: 81
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

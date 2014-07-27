@@ -1,0 +1,213 @@
+fileFormatVersion: 2
+guid: a1f8f178d5512424981b69e50ff0dd42
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: timjump
+    21300002: timjump_0
+    21300004: timjump_1
+    21300006: timjump_2
+    21300008: timjump_3
+    21300010: timjump_4
+    21300012: timjump_5
+    21300014: timjump_6
+    21300016: timjump_7
+    21300018: timjump_8
+    21300020: timjump_9
+    21300022: timjump_10
+    21300024: timjump_11
+    21300026: timjump_12
+    21300028: timjump_13
+    21300030: timjump_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: timjump_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 106
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 105
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_2
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 0
+        width: 106
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_3
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 0
+        width: 107
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_4
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 0
+        width: 106
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_5
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 0
+        width: 106
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_6
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 0
+        width: 107
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_7
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 0
+        width: 109
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_8
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 108
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_9
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 0
+        width: 110
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_10
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 0
+        width: 113
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_11
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 0
+        width: 116
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_12
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 0
+        width: 116
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_13
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 0
+        width: 116
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: timjump_14
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 0
+        width: 115
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

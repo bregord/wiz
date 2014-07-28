@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\player1Controller.cs" />
      <Compile Include="Assets\player1movement.cs" />
+     <Compile Include="Assets\playerController.cs" />
      <Compile Include="Assets\scripts\timcontroller.cs" />
      <Compile Include="Assets\shotMover.cs" />
   </ItemGroup>

@@ -49,6 +49,9 @@ public class timcontroller : MonoBehaviour {
 	//public GameObject disarm;
 	//public GameObject beam;
 	public GameObject shield;
+	//public GameObject tempShield;
+
+	bool shielded = false;
 
 	
 	public Transform shieldSpawn;
@@ -99,6 +102,8 @@ public class timcontroller : MonoBehaviour {
 	}
 
 	void Update(){
+
+
 		//anim.SetBool ("Roll", false);
 
 		float move = Input.GetAxis ("Horizontal");
@@ -120,11 +125,23 @@ public class timcontroller : MonoBehaviour {
 */
 
 		
-		if (grounded && Input.GetKeyDown ("/")) {
-		
-			Instantiate(shield, shieldSpawn.position, shieldSpawn.rotation);
-		}
+		if (grounded && Input.GetKey("/")) {
+			//if(!shielded){
+			//Instantiate(tempShield, shieldSpawn.position, shieldSpawn.rotation);
+				shield.SetActive(true);
 
+			//}
+		} else {
+
+			shield.SetActive(false);
+			}
+			/*
+		if (grounded && Input.GetKeyUp("/") && shielded == true) {
+			shielded = false;
+			Destroy (tempShield);
+			tempShield = shield;
+		}
+*/
 
 		if (grounded && Input.GetKeyDown (".")) {
 

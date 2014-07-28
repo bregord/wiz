@@ -7,20 +7,17 @@ public class playerController : MonoBehaviour {
 	public BoxCollider2D frontHitbox; //Our front hitbox
 	public BoxCollider2D backHitbox;
 	public BoxCollider2D tempHitBox = null;
+	public BoxCollider2D crouchHitBox;
 	
 
 	private bool faceRight = true; //tells us we are facing right or not
-	
-	//There are three idle states. Idle high, idle mid, idle low
-	public bool idleHigh;
-	public bool idleMid;
-	public bool idleLow;
-	
+
 	
 	//There are several movement states. Rolling, Crouched, and Grounded
 	
 	bool rolling = false;
 	bool crouched = false;
+	bool down = false;
 	
 	//The animator object
 	Animator anim;
@@ -110,114 +107,179 @@ public class playerController : MonoBehaviour {
 
 // Update is called once per frame
 	void Update () {
-		float move = Input.GetAxis ("Horizontal");
+				float move = Input.GetAxis ("Horizontal");
 
 
-		//Jump Code =====================
-		if (grounded && Input.GetKeyDown (".")) {
+		//MOVEMENT CODE
+		if(!down){
+
+				//Jump Code =====================
+				if (grounded && Input.GetKeyDown (".")) {
 			
 			
-			//If we are grounded, and pressing the spacebar, add the jumpforce
-			anim.SetBool("Ground", false);
-			rigidbody2D.AddForce(new Vector2(0, jumpForce));
+						//If we are grounded, and pressing the spacebar, add the jumpforce
+						anim.SetBool ("Ground", false);
+						rigidbody2D.AddForce (new Vector2 (0, jumpForce));
+				}
+
+				//Roll COde=========================
+				if (grounded && Input.GetKey ("down") && Mathf.Abs (rigidbody2D.velocity.x) > 3) {
+
+
+
+						rolling = true;
+						anim.SetBool ("Roll", true);
+						rigidbody2D.velocity = new Vector2 (move * maxSpeed * Time.deltaTime, rigidbody2D.velocity.y);
+						crouchHitBox.enabled = true;
+						frontHitbox.enabled = false;
+						backHitbox.enabled = false;
+
+
+				} else {
+						rolling = false;
+						anim.SetBool ("Roll", false);
+						crouchHitBox.enabled = false;
+						frontHitbox.enabled = true;
+						backHitbox.enabled = true;
+			
+				}
+
+				//Crouch code=========================
+				if (grounded && Input.GetKey ("down") && Mathf.Abs (rigidbody2D.velocity.x) <= 3) {
+
+						rigidbody2D.drag += 2;
+						rigidbody2D.velocity = new Vector2 (move * maxCrouchSpeed * Time.deltaTime, rigidbody2D.velocity.y);
+						crouched = true;
+						anim.SetBool ("Crouch", true);
+
+						crouchHitBox.enabled = true;
+						frontHitbox.enabled = false;
+						backHitbox.enabled = false;
+
+			
+				} else {
+						rigidbody2D.drag = 0;
+						crouched = false;
+						anim.SetBool ("Crouch", false);
+
+						crouchHitBox.enabled = false;
+						frontHitbox.enabled = true;
+						backHitbox.enabled = true;
+
+			
+				}
+
 		}
 
-		//Roll COde=========================
-		if (grounded && Input.GetKey ("down") && Mathf.Abs(rigidbody2D.velocity.x) > 3) {
 
 
 
-			rolling = true;
-			anim.SetBool ("Roll", true);
-			rigidbody2D.velocity = new Vector2 (move * maxSpeed * Time.deltaTime , rigidbody2D.velocity.y);
+
+		//MAGIC CODE
+
+		if(!down && holdingWand){
+
+				//Bolt shot code=====================
+				if (Input.GetKeyDown (",") && Time.time > nextFire && grounded) {
+						nextFire = Time.time + fireRate;
+			
+						if (faceRight) {
+								Instantiate (rightShot, shotSpawn.position, shotSpawn.rotation);
+								//print (shotSpawn.position);
+				
+						} else {
+				
+								Instantiate (leftShot, shotSpawn.position, shotSpawn.rotation);
+						}
+						//print (shotSpawn.position);
+						//audio.Play ();
+				}
+
+
+				//Shield Code ===========
+
+				if (grounded && Input.GetKey ("/") && move == 0) {
+						//if(!shielded){
+						//Instantiate(tempShield, shieldSpawn.position, shieldSpawn.rotation);
+						shield.SetActive (true);
+
+			
+						anim.SetBool ("Shielded", true);
+
+						//}
 				} else {
-			rolling = false;
-			anim.SetBool ("Roll", false);
+
+
+						anim.SetBool ("Shielded", false);
+						shield.SetActive (false);
+				}
+
+
+				//Disarm Code============
+
+				if (Input.GetKeyDown ("/") && Time.time > nextFire && grounded && (Input.GetKey ("left") || Input.GetKey ("right"))) {
+						nextFire = Time.time + fireRate;
+			
+						if (faceRight) {
+								Instantiate (rightDisarmShot, shotSpawn.position, shotSpawn.rotation);
+								//print (shotSpawn.position);
+				
+						} else {
+				
+								Instantiate (leftDisarmShot, shotSpawn.position, shotSpawn.rotation);
+						}
+						//print (shotSpawn.position);
+						//audio.Play ();
+				}
+
+
+				//Wand movement code
+				if (Mathf.Abs (rigidbody2D.velocity.x) <= 3 && (!crouched || !rolling)) {
+						
+						if (wandpos < 1 && Input.GetKeyDown ("up")) {
+
+
+
+								wandpos = wandpos + 1;
+								wand.transform.position = new Vector3 ((wand.transform.position.x), (wand.transform.position.y + 0.7f), 0);
+								anim.SetInteger ("WandIdle", wandpos);
+
+						}
+						if (wandpos > -1 && Input.GetKeyDown ("down")) {
+
+
+								wandpos = wandpos - 1;
+								wand.transform.position = new Vector3 (wand.transform.position.x, wand.transform.position.y - 0.7f, 0);
+								anim.SetInteger ("WandIdle", wandpos);		
+			
+						}
+				}
+	
+
+				//Hit by something code
+
+
+				//downed
+				if (down && (Input.GetKeyDown("up") || Input.GetKeyDown("."))) {
+			down = false;
 
 				}
 
-		//Crouch code
-		if (grounded && Input.GetKey ("down") && Mathf.Abs(rigidbody2D.velocity.x) <= 3 ) {
 
-			rigidbody2D.drag += 2;
-			rigidbody2D.velocity = new Vector2 (move * maxCrouchSpeed * Time.deltaTime , rigidbody2D.velocity.y);
-			crouched = true;
-			anim.SetBool ("Crouch", true);
-			
-		} else {
-			rigidbody2D.drag = 0;
-			crouched = false;
-			anim.SetBool ("Crouch", false);
-			
 		}
+	}
 
 
-		if(grounded && Input.GetKey("down") && move > 3 ){
-			
-		}
-
-		//Bolt shot code=====================
-		if (Input.GetKeyDown(",") && Time.time > nextFire & grounded)
-		{
-			nextFire = Time.time + fireRate;
-			
-			if(faceRight){
-				Instantiate(rightShot, shotSpawn.position, shotSpawn.rotation);
-				//print (shotSpawn.position);
-				
-			} else {
-				
-				Instantiate(leftShot, shotSpawn.position, shotSpawn.rotation);
-			}
-			//print (shotSpawn.position);
-			//audio.Play ();
-		}
-
-
-		//Shield Code ===========
-
-		if (grounded && Input.GetKey("/") && move ==0) {
-			//if(!shielded){
-			//Instantiate(tempShield, shieldSpawn.position, shieldSpawn.rotation);
-			shield.SetActive(true);
-			
-			//}
-		} else {
-			
-			shield.SetActive(false);
-		}
-
-
-		//Disarm Code============
-
-		if (Input.GetKeyDown("/") && Time.time > nextFire && grounded && (Input.GetKey("left") || Input.GetKey("right")))
-		{
-			nextFire = Time.time + fireRate;
-			
-			if(faceRight){
-				Instantiate(rightDisarmShot, shotSpawn.position, shotSpawn.rotation);
-				//print (shotSpawn.position);
-				
-			} else {
-				
-				Instantiate(leftDisarmShot, shotSpawn.position, shotSpawn.rotation);
-			}
-			//print (shotSpawn.position);
-			//audio.Play ();
-		}
-
-
-
-
-
-
-
+	void hit(){
+		frontHitbox.enabled = false;
+		backHitbox.enabled = false;
+		crouchHitBox.enabled = false;
+		anim.SetBool ("Down", true);
 
 
 
 
 	}
-
 
 
 void Flip(){

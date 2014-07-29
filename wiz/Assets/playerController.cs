@@ -69,8 +69,15 @@ public class playerController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+
+		
 		float move = Input.GetAxis ("Horizontal");
-		rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y); 
+
+		if (!down) {
+						rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y); 
+				} else if (down) {
+			rigidbody2D.velocity = new Vector2(0,rigidbody2D.velocity.y);
+				}
 
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround); //generates a circle at a position, with a radious
 		//and tells you if there is a thing it collides with there. If yes, then true
@@ -260,26 +267,40 @@ public class playerController : MonoBehaviour {
 
 
 				//downed
-				if (down && (Input.GetKeyDown("up") || Input.GetKeyDown("."))) {
-			down = false;
-
-				}
 
 
 		}
+
+		if (down && Input.GetKeyDown("up") || down && Input.GetKeyDown(".")) {
+			down = false;
+			anim.SetBool("Down", false);
+			
+		}
 	}
 
+	
 
-	void hit(){
+	void OnTriggerEnter2D(Collider2D other)
+	{
 		frontHitbox.enabled = false;
 		backHitbox.enabled = false;
 		crouchHitBox.enabled = false;
+
+		down = true;
 		anim.SetBool ("Down", true);
 
+		print ("The Enemy's Player is Down");
 
 
+		if (other.tag == "Shot") {
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+		}
+	
 
 	}
+
+
 
 
 void Flip(){

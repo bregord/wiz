@@ -18,6 +18,7 @@ public class playerController : MonoBehaviour {
 	bool rolling = false;
 	bool crouched = false;
 	bool down = false;
+	bool hit = false;
 	
 	//The animator object
 	Animator anim;
@@ -34,11 +35,16 @@ public class playerController : MonoBehaviour {
 	public float maxRollSpeed;
 	public float jumpForce;
 	public float maxCrouchSpeed;
+
+	public float hitForceX;
+	float realHitForceX;
+	public float hitForceY;
 	
 	//The wand stuff goes here
 	public int wandpos = 0; //Low is -1, mid is 0, high is 1;
 	//There are other options if you are up in the air
 	public bool holdingWand = true; //You start he game with a wand. If you drop it, this becomes false
+
 	public GameObject wand;
 	
 	
@@ -48,14 +54,16 @@ public class playerController : MonoBehaviour {
 
 	public GameObject leftDisarmShot;
 	public GameObject rightDisarmShot;
+
+	public GameObject disarmWand;
 	//public GameObject disarm;
 	//public GameObject beam;
 
-	public GameObject shield;
-	bool shielded = false;
+	//public GameObject shield;
+	//bool shielded = false;
 	
 	
-	public Transform shieldSpawn;
+	//public Transform shieldSpawn;
 	public Transform shotSpawn;
 	
 	
@@ -63,21 +71,70 @@ public class playerController : MonoBehaviour {
 	private float nextFire;
 
 
+	public float flyDist;
+
+	float currentPosition;
+	Transform hitPosition;
+
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
+		//anim.SetBool ("Shielded", false);
+		anim.SetBool ("Down", false);
 	}
 
 	void FixedUpdate(){
 
+
+
 		
 		float move = Input.GetAxis ("Horizontal");
 
+
+
+		//print (move);
+
+
 		if (!down) {
 						rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y); 
-				} else if (down) {
+				
+			
+			if (move > 0 && !faceRight) {
+				Flip ();
+			} else if (move < 0 && faceRight) {
+				Flip();
+			}
+
+
+		
+		} else if (down && grounded) {
+
+
 			rigidbody2D.velocity = new Vector2(0,rigidbody2D.velocity.y);
+
+		}
+
+
+
+
+		Vector2 direction = new Vector2 (realHitForceX, hitForceY);
+
+
+
+		if (hit && Mathf.Abs(currentPosition - transform.position.x) < flyDist ) {
+
+		
+
+						transform.Translate (direction * Time.fixedDeltaTime);
+
+
+
+				} else {
+			hit = false;
 				}
+
+
 
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround); //generates a circle at a position, with a radious
 		//and tells you if there is a thing it collides with there. If yes, then true
@@ -85,26 +142,10 @@ public class playerController : MonoBehaviour {
 		anim.SetBool ("Ground", grounded); //This tells the animator if we are on the ground or not
 
 		anim.SetFloat("Speed", Mathf.Abs(move)); //Connects the animator paramater Speed to movement.
-		rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y); 
+		//rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y); 
 
 		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 
-
-
-		if (move > 0 && !faceRight) {
-			Flip ();
-		} else if (move < 0 && faceRight) {
-			Flip();
-		}
-
-
-
-
-		//Getting hit by stuff.
-
-
-
-		//Getting Disarmed
 
 
 
@@ -203,28 +244,12 @@ public class playerController : MonoBehaviour {
 				}
 
 
-				//Shield Code ===========
 
-				if (grounded && Input.GetKey ("/") && move == 0) {
-						//if(!shielded){
-						//Instantiate(tempShield, shieldSpawn.position, shieldSpawn.rotation);
-						shield.SetActive (true);
-
-			
-						anim.SetBool ("Shielded", true);
-
-						//}
-				} else {
-
-
-						anim.SetBool ("Shielded", false);
-						shield.SetActive (false);
-				}
 
 
 				//Disarm Code============
 
-				if (Input.GetKeyDown ("/") && Time.time > nextFire && grounded && (Input.GetKey ("left") || Input.GetKey ("right"))) {
+				if (Input.GetKeyDown ("/") && Time.time > nextFire && grounded) {
 						nextFire = Time.time + fireRate;
 			
 						if (faceRight) {
@@ -273,35 +298,102 @@ public class playerController : MonoBehaviour {
 
 		if (down && Input.GetKeyDown("up") || down && Input.GetKeyDown(".")) {
 			down = false;
+			hit = false;
 			anim.SetBool("Down", false);
+			frontHitbox.enabled = true;
+			backHitbox.enabled = true;
+			crouchHitBox.enabled = false;
+
 			
 		}
 	}
-
 	
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D(){
+
+		}
+
+
+
+	void OnCollisionEnter2D(Collision2D other)
 	{
-		frontHitbox.enabled = false;
-		backHitbox.enabled = false;
-		crouchHitBox.enabled = false;
-
-		down = true;
-		anim.SetBool ("Down", true);
-
-		print ("The Enemy's Player is Down");
+				
+		if (other.collider.gameObject.tag == "ShotL" || other.collider.gameObject.tag == "ShotR") {
 
 
-		if (other.tag == "Shot") {
-			Destroy (other.gameObject);
-			Destroy (gameObject);
+						frontHitbox.enabled = false;
+						backHitbox.enabled = false;
+						crouchHitBox.enabled = false;
+
+			currentPosition = gameObject.transform.position.x;
+
+						down = true;
+						anim.SetBool ("Down", true);
+						hit = true;
+
+
+			if(other.collider.gameObject.tag == "ShotL"){
+
+				realHitForceX = -hitForceX;
+
+			} else if (other.collider.gameObject.tag == "ShotR"){
+
+				realHitForceX = hitForceX;
+			}
+
+
+						Destroy (other.gameObject);
+				}
+
+
+		if (other.collider.gameObject.tag == "DisarmShot") {
+
+			if(holdingWand){
+			holdingWand = false;
+
+			wand.SetActive(false);
+
+			print ("DISARM HIT!");
+			
+				
+			Instantiate (disarmWand, shotSpawn.position, shotSpawn.rotation);
+
+			}
+
+			Destroy(other.gameObject);
+
+
 		}
 	
-
 	}
 
 
 
+
+	void OnTriggerStay2D(Collider2D other){
+
+		if (other.tag == "Wand") {
+
+			if(!holdingWand && Input.GetKeyDown("down")){
+				print ("This was called");
+
+				holdingWand = true;
+
+				Destroy(other.gameObject);
+
+				wand.SetActive (true);
+
+
+			}
+
+
+
+				}
+
+	} 
+
+
+		
 
 void Flip(){
 

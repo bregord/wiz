@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DestroyByBoundary.cs" />
+     <Compile Include="Assets\GameController.cs" />
      <Compile Include="Assets\ShotHit.cs" />
      <Compile Include="Assets\player1Controller.cs" />
      <Compile Include="Assets\player1movement.cs" />
      <Compile Include="Assets\playerController.cs" />
      <Compile Include="Assets\scripts\timcontroller.cs" />
      <Compile Include="Assets\shotMover.cs" />
+     <Compile Include="Assets\wandDisarmed.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
